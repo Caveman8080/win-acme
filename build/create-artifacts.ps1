@@ -199,6 +199,9 @@ PluginRelease plugin.validation.dns.godaddy @(
 	"Newtonsoft.Json.dll",
 	"PKISharp.WACS.Plugins.ValidationPlugins.Godaddy.dll"
 )
+PluginRelease plugin.validation.dns.hurricaneelectric @(
+	"PKISharp.WACS.Plugins.ValidationPlugins.HurricaneElectric.dll"
+)
 PluginRelease plugin.validation.dns.googledns @(
 	"Google.Apis.dll",
 	"Google.Apis.Auth.dll",

@@ -46,6 +46,7 @@ foreach ($release in @("Release", "ReleaseTrimmed")) {
 & dotnet publish $RepoRoot\src\plugin.validation.dns.domeneshop\wacs.validation.dns.domeneshop.csproj -c "Release"
 & dotnet publish $RepoRoot\src\plugin.validation.dns.dreamhost\wacs.validation.dns.dreamhost.csproj -c "Release"
 & dotnet publish $RepoRoot\src\plugin.validation.dns.godaddy\wacs.validation.dns.godaddy.csproj -c "Release"
+& dotnet publish $RepoRoot\src\plugin.validation.dns.hurricaneelectric\wacs.validation.dns.hurricaneelectric.csproj -c "Release"
 & dotnet publish $RepoRoot\src\plugin.validation.dns.googledns\wacs.validation.dns.googledns.csproj -c "Release"
 & dotnet publish $RepoRoot\src\plugin.validation.dns.hetzner\wacs.validation.dns.hetzner.csproj -c "Release"
 & dotnet publish $RepoRoot\src\plugin.validation.dns.infomaniak\wacs.validation.dns.infomaniak.csproj -c "Release"
