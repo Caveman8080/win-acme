@@ -44,7 +44,7 @@ namespace PKISharp.WACS.Host
                 Console.WriteLine(" Operation was canceled.");
                 FriendlyClose();
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is SystemException || ex is ApplicationException)
             {
                 Console.WriteLine(" Error in main function: " + ex.Message);
                 if (verbose)
