@@ -38,7 +38,12 @@ namespace PKISharp.WACS.Host
                 AllowInstanceToRun(container);
                 var wacs = container.Resolve<Wacs>();
                 Environment.ExitCode = await wacs.Start().ConfigureAwait(false);
-            } 
+            }
+            catch (OperationCanceledException)
+            {
+                Console.WriteLine(" Operation was canceled.");
+                FriendlyClose();
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(" Error in main function: " + ex.Message);
@@ -52,7 +57,7 @@ namespace PKISharp.WACS.Host
                     }
                 }
                 FriendlyClose();
-            } 
+            }
             finally
             {
                 // Restore original code page
