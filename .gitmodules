@@ -1,6 +1,7 @@
 [submodule "src/fluent-command-line-parser"]
 	path = src/fluent-command-line-parser
 	url = https://github.com/win-acme/fluent-command-line-parser.git
+	branch = 2.2.8
 [submodule "src/ACMESharpCore"]
 	path = src/ACMESharpCore
 	url = https://github.com/win-acme/ACMESharpCore.git
