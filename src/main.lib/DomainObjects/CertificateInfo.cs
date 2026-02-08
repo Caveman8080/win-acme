@@ -32,6 +32,7 @@ namespace PKISharp.WACS.DomainObjects
         public CertificateInfo(ICertificateInfo certificateInfo, PfxProtectionMode protectionMode) :
             this(PfxService.ConvertPfx(certificateInfo.Collection, protectionMode)) { }
         
+        /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="collection"></param>
