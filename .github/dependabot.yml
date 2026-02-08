@@ -10,6 +10,12 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    allow:
+      - dependency-name: "src/ACMESharpCore"
+      - dependency-name: "src/fluent-command-line-parser"
+    ignore:
+      - dependency-name: "react-scripts"
+      - dependency-name: "create-react-app/packages/react-scripts"
   # Enable version updates for NuGet
   - package-ecosystem: "nuget"
     directories:
