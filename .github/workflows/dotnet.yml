@@ -21,8 +21,11 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore win-acme/src/wascs.sln
+      working-directory: /home/runner/work/win-acme/win-acme/src/
+      run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore win-acme/src/wacs.sln
+      working-directory: /home/runner/work/win-acme/win-acme/src/
+      run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal win-aceme/src/wacs.sln
+      working-directory: /home/runner/work/win-acme/win-acme/src/
+      run: dotnet test --no-build --verbosity normal
