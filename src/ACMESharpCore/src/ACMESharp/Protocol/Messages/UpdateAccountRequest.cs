@@ -14,18 +14,14 @@ namespace ACMESharp.Protocol.Messages
         /// this property can be omitted.
         /// </summary>
         [JsonPropertyName("contact")]
-        public IEnumerable<string> Contact { get; set; }
+        public IEnumerable<string>? Contact { get; set; }
 
         [JsonPropertyName("termsOfServiceAgreed")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public bool? TermsOfServiceAgreed { get; set; }
 
-        [JsonPropertyName("externalAccountBinding")]
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public object ExternalAccountBinding { get; set; }
-
         [JsonPropertyName("status")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

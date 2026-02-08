@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using ACMESharp.Protocol.Resources;
 
@@ -11,15 +10,18 @@ namespace ACMESharp.Protocol.Messages
     {
         [JsonPropertyName("identifiers")]
         [JsonRequired]
-        [Required, MinLength(1)]
-        public Identifier[] Identifiers { get; set; }
+        public AcmeIdentifier[]? Identifiers { get; set; }
+
+        [JsonPropertyName("replaces")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? Replaces { get; set; }
 
         [JsonPropertyName("notBefore")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string NotBefore { get; set; }
+        public string? NotBefore { get; set; }
 
         [JsonPropertyName("notAfter")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string NotAfter { get; set; }
+        public string? NotAfter { get; set; }
     }
 }

@@ -25,6 +25,7 @@
 using Fclp.Internals.Parsing;
 using Fclp.Internals.Parsing.OptionParsers;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fclp.Internals
 {
@@ -53,7 +54,7 @@ namespace Fclp.Internals
         /// <param name="longName">The long name for this Option or <c>null</c> if not required.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if <paramref name="shortName"/> is <c>null</c>, <c>empty</c> or contains only <c>whitespace</c>.</exception>
         /// <returns>A <see cref="ICommandLineOptionResult{T}"/>.</returns>
-        public ICommandLineOptionResult<T> CreateOption<T>(string shortName, string longName) => new CommandLineOption<T>(shortName, longName, ParserFactory.CreateParser<T>());
+        public ICommandLineOptionResult<T> CreateOption<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(string shortName, string longName) => new CommandLineOption<T>(shortName, longName, ParserFactory.CreateParser<T>());
 
         /// <summary>
         /// Create a new <see cref="IHelpCommandLineOptionResult"/> using the specified args.

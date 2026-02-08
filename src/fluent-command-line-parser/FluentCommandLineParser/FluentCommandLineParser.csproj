@@ -1,10 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;DebugTrimmed;Release;ReleaseTrimmed</Configurations>
+	<TargetFramework>net8.0</TargetFramework>
     <AssemblyName>FluentCommandLineParser</AssemblyName>
     <RootNamespace>Fclp</RootNamespace>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='DebugTrimmed' OR '$(Configuration)'=='ReleaseTrimmed'">
+	 <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
   </PropertyGroup>
 
 </Project>

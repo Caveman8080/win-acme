@@ -23,6 +23,7 @@
 #endregion
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fclp.Internals.Parsing.OptionParsers
 {
@@ -30,7 +31,7 @@ namespace Fclp.Internals.Parsing.OptionParsers
     /// 
     /// </summary>
     /// <typeparam name="TEnum"></typeparam>
-    public class NullableEnumCommandLineOptionParser<TEnum> : ICommandLineOptionParser<TEnum?> where TEnum : struct
+    public class NullableEnumCommandLineOptionParser<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TEnum> : ICommandLineOptionParser<TEnum?> where TEnum : struct
     {
         private readonly ICommandLineOptionParserFactory _parserFactory;
 

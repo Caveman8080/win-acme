@@ -23,6 +23,7 @@
 #endregion
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -46,7 +47,7 @@ namespace Fclp.Internals
         /// Either <paramref name="shortOption"/> or <paramref name="longOption"/> are not valid. <paramref name="shortOption"/> must not be <c>whitespace</c>
         /// or a control character. <paramref name="longOption"/> must not be <c>null</c>, <c>empty</c> or only <c>whitespace</c>.
         /// </exception>
-        ICommandLineOptionFluent<T> Setup<T>(char shortOption, string longOption);
+        ICommandLineOptionFluent<T> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(char shortOption, string longOption);
 
         /// <summary>
         /// Setup a new <see cref="ICommandLineOptionFluent{T}"/> using the specified short Option name.
@@ -58,7 +59,7 @@ namespace Fclp.Internals
         /// A Option with the same <paramref name="shortOption"/> name 
         /// already exists in the <see cref="IFluentCommandLineParser"/>.
         /// </exception>
-        ICommandLineOptionFluent<T> Setup<T>(char shortOption);
+        ICommandLineOptionFluent<T> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(char shortOption);
 
         /// <summary>
         /// Setup a new <see cref="ICommandLineOptionFluent{T}"/> using the specified long Option name.
@@ -68,7 +69,7 @@ namespace Fclp.Internals
         /// <exception cref="OptionAlreadyExistsException">
         /// A Option with the same <paramref name="longOption"/> name already exists in the <see cref="IFluentCommandLineParser"/>.
         /// </exception>
-        ICommandLineOptionFluent<T> Setup<T>(string longOption);
+        ICommandLineOptionFluent<T> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string longOption);
     }
 
     /// <summary>
@@ -76,7 +77,7 @@ namespace Fclp.Internals
     /// </summary>
     /// <typeparam name="TBuildType">The type of object being populated.</typeparam>
     /// <typeparam name="TProperty">The type of the property the value will be assigned too.</typeparam>
-    public class CommandLineOptionBuilderFluent<TBuildType, TProperty> : ICommandLineOptionBuilderFluent<TProperty>
+    public class CommandLineOptionBuilderFluent<TBuildType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] TProperty> : ICommandLineOptionBuilderFluent<TProperty>
     {
         private readonly ICommandLineCommandT<TBuildType> _command;
         private readonly ICommandLineOptionSetupFactory _setupFactory;

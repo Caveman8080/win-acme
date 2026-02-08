@@ -2,6 +2,7 @@ using Fclp.Internals;
 using Fclp.Internals.Validators;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq.Expressions;
 
@@ -85,15 +86,15 @@ namespace Fclp
             return this;
         }
 
-        public ICommandLineOptionBuilderFluent<TProperty> Setup<TProperty>(Expression<Func<TBuildType, TProperty>> propertyPicker) => new CommandLineOptionBuilderFluent<TBuildType, TProperty>(this, Object, propertyPicker, this);
+        public ICommandLineOptionBuilderFluent<TProperty> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] TProperty>(Expression<Func<TBuildType, TProperty>> propertyPicker) => new CommandLineOptionBuilderFluent<TBuildType, TProperty>(this, Object, propertyPicker, this);
 
-        public ICommandLineOptionFluent<T> Setup<T>(char shortOption, string longOption) => SetupInternal<T>(shortOption.ToString(CultureInfo.InvariantCulture), longOption);
+        public ICommandLineOptionFluent<T> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(char shortOption, string longOption) => SetupInternal<T>(shortOption.ToString(CultureInfo.InvariantCulture), longOption);
 
-        public ICommandLineOptionFluent<T> Setup<T>(char shortOption) => SetupInternal<T>(shortOption.ToString(CultureInfo.InvariantCulture), null);
+        public ICommandLineOptionFluent<T> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(char shortOption) => SetupInternal<T>(shortOption.ToString(CultureInfo.InvariantCulture), null);
 
-        public ICommandLineOptionFluent<T> Setup<T>(string longOption) => SetupInternal<T>(null, longOption);
+        public ICommandLineOptionFluent<T> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string longOption) => SetupInternal<T>(null, longOption);
 
-        private ICommandLineOptionFluent<T> SetupInternal<T>(string shortOption, string longOption)
+        private ICommandLineOptionFluent<T> SetupInternal<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(string shortOption, string longOption)
         {
             var argOption = OptionFactory.CreateOption<T>(shortOption, longOption);
 

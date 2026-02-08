@@ -8,6 +8,6 @@ namespace ACMESharp
 
         public string FetchError { get; set; }
 
-        public Authorization Details { get; set; }
+        public ACMESharp.Protocol.Resources.AcmeAuthorization Details { get; set; }
     }
 }

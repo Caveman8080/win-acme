@@ -23,12 +23,14 @@
 #endregion
 
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Fclp.Internals.Parsing.OptionParsers
 {
     /// <summary>
     /// Parser used to convert to nullable types
     /// </summary>
-    public class NullableCommandLineOptionParser<TNullableType> : ICommandLineOptionParser<TNullableType?> where TNullableType : struct
+    public class NullableCommandLineOptionParser<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TNullableType> : ICommandLineOptionParser<TNullableType?> where TNullableType : struct
     {
         private readonly ICommandLineOptionParserFactory _parserFactory;
 

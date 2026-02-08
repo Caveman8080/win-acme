@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fclp.Internals.Parsing.OptionParsers
 {
@@ -75,13 +76,13 @@ namespace Fclp.Internals.Parsing.OptionParsers
         {
             if (parser == null)
             {
-                throw new ArgumentNullException("parser");
+                throw new ArgumentNullException(nameof(parser));
             }
 
             var parserType = typeof(T);
 
             // remove existing
-            Parsers.Remove(parserType);
+            _ = Parsers.Remove(parserType);
 
             Parsers.Add(parserType, parser);
         }
@@ -92,7 +93,7 @@ namespace Fclp.Internals.Parsing.OptionParsers
         /// <typeparam name="T">The type of parser to create.</typeparam>
         /// <returns>A <see cref="ICommandLineOptionParser{T}"/> suitable for the specified type.</returns>
         /// <exception cref="UnsupportedTypeException">If the specified type is not supported by this factory.</exception>
-        public ICommandLineOptionParser<T> CreateParser<T>()
+        public ICommandLineOptionParser<T> CreateParser<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>()
         {
             var type = typeof(T);
 
@@ -111,7 +112,7 @@ namespace Fclp.Internals.Parsing.OptionParsers
         /// Attempts to add a special case parser, such as Enum or List{TEnum} parser.
         /// </summary>
         /// <returns>True if a special parser was added for the type; otherwise false.</returns>
-        private bool TryAddAsSpecialParser<T>(Type type)
+        private bool TryAddAsSpecialParser<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(Type type)
         {
             if (type.IsEnum)
             {
@@ -135,63 +136,7 @@ namespace Fclp.Internals.Parsing.OptionParsers
                 }
                 return true;
             }
-
-            if (type.IsGenericType)
-            {
-                var genericType = TryGetListGenericType(type);
-
-                if (genericType != null)
-                {
-                    if (genericType.IsEnum || IsNullableEnum(genericType))
-                    {
-                        var enumListParserType = typeof(ListCommandLineOptionParser<>).MakeGenericType(genericType);
-                        var parser = (ICommandLineOptionParser<T>)Activator.CreateInstance(enumListParserType, this);
-
-                        if (!Parsers.ContainsKey(type))
-                        {
-                            AddOrReplace(parser);
-                        }
-
-                        return true;
-                    }
-                }
-            }
-
-            if (IsNullableEnum(type))
-            {
-                var underlyingType = Nullable.GetUnderlyingType(type);
-                var nullableEnumParserType = typeof(NullableEnumCommandLineOptionParser<>).MakeGenericType(underlyingType);
-                var parser = (ICommandLineOptionParser<T>)Activator.CreateInstance(nullableEnumParserType, this);
-
-                if (!Parsers.ContainsKey(type))
-                {
-                    AddOrReplace(parser);
-                }
-
-                return true;
-            }
-
             return false;
-        }
-
-        private static bool IsNullableEnum(Type t)
-        {
-            var u = Nullable.GetUnderlyingType(t);
-            return (u != null) && u.IsEnum;
-        }
-
-        /// <summary>
-        /// Attemps to get the type of generic from a generic list.
-        /// </summary>
-        private static Type TryGetListGenericType(Type type)
-        {
-            if (type.IsGenericType && type.GetGenericTypeDefinition()
-                == typeof(List<>))
-            {
-                return type.GetGenericArguments()[0];
-            }
-
-            return null;
         }
     }
 }

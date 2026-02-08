@@ -25,6 +25,7 @@
 using Fclp.Internals;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
 namespace Fclp
@@ -44,7 +45,7 @@ namespace Fclp
         /// <summary>
         /// Sets up an Option for a write-able property on the type being built.
         /// </summary>
-        ICommandLineOptionBuilderFluent<TProperty> Setup<TProperty>(Expression<Func<TBuildType, TProperty>> propertyPicker);
+        ICommandLineOptionBuilderFluent<TProperty> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] TProperty>(Expression<Func<TBuildType, TProperty>> propertyPicker);
 
         /// <summary>
         /// Parses the specified <see><cref>T:System.String[]</cref></see> using the setup Options.

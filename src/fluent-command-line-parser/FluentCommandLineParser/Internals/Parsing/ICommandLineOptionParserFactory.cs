@@ -23,6 +23,7 @@
 #endregion
 
 using Fclp.Internals.Parsing.OptionParsers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Fclp.Internals.Parsing
 {
@@ -37,6 +38,6 @@ namespace Fclp.Internals.Parsing
         /// <typeparam name="T">The type of parser to create.</typeparam>
         /// <returns>A <see cref="ICommandLineOptionParser{T}"/> suitable for the specified type.</returns>
         /// <exception cref="UnsupportedTypeException">If the specified type is not supported by this factory.</exception>
-        ICommandLineOptionParser<T> CreateParser<T>();
+        ICommandLineOptionParser<T> CreateParser<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>();
     }
 }

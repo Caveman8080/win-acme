@@ -29,6 +29,7 @@ using Fclp.Internals.Parsing;
 using Fclp.Internals.Validators;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 
@@ -219,25 +220,9 @@ namespace Fclp
         /// A Option with the same <paramref name="shortOption"/> name or <paramref name="longOption"/> name
         /// already exists in the <see cref="IFluentCommandLineParser"/>.
         /// </exception>
-        public ICommandLineOptionFluent<T> Setup<T>(char shortOption, string longOption) => SetupInternal<T>(shortOption.ToString(CultureInfo.InvariantCulture), longOption);
+        public ICommandLineOptionFluent<T> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(char shortOption, string longOption) => SetupInternal<T>(shortOption.ToString(CultureInfo.InvariantCulture), longOption);
 
-        /// <summary>
-        /// Setup a new <see cref="ICommandLineOptionFluent{T}"/> using the specified short and long Option name.
-        /// </summary>
-        /// <param name="shortOption">The short name for the Option. This must not be <c>whitespace</c> or a control character.</param>
-        /// <param name="longOption">The long name for the Option. This must not be <c>null</c>, <c>empty</c> or only <c>whitespace</c>.</param>
-        /// <returns></returns>
-        /// <exception cref="OptionAlreadyExistsException">
-        /// A Option with the same <paramref name="shortOption"/> name or <paramref name="longOption"/> name already exists in the <see cref="IFluentCommandLineParser"/>.
-        /// </exception>
-        /// <exception cref="InvalidOptionNameException">
-        /// Either <paramref name="shortOption"/> or <paramref name="longOption"/> are not valid. <paramref name="shortOption"/> must not be <c>whitespace</c>
-        /// or a control character. <paramref name="longOption"/> must not be <c>null</c>, <c>empty</c> or only <c>whitespace</c>.
-        /// </exception>
-        [Obsolete("Use new overload Setup<T>(char, string) to specify both a short and long option name instead.")]
-        public ICommandLineOptionFluent<T> Setup<T>(string shortOption, string longOption) => SetupInternal<T>(shortOption, longOption);
-
-        private ICommandLineOptionFluent<T> SetupInternal<T>(string shortOption, string longOption)
+        private ICommandLineOptionFluent<T> SetupInternal<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string shortOption, string longOption)
         {
             var argOption = OptionFactory.CreateOption<T>(shortOption, longOption);
 
@@ -261,7 +246,7 @@ namespace Fclp
         /// <exception cref="OptionAlreadyExistsException">
         /// A Option with the same <paramref name="shortOption"/> name already exists in the <see cref="IFluentCommandLineParser"/>.
         /// </exception>
-        public ICommandLineOptionFluent<T> Setup<T>(char shortOption) => SetupInternal<T>(shortOption.ToString(CultureInfo.InvariantCulture), null);
+        public ICommandLineOptionFluent<T> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(char shortOption) => SetupInternal<T>(shortOption.ToString(CultureInfo.InvariantCulture), null);
 
         /// <summary>
         /// Setup a new <see cref="ICommandLineOptionFluent{T}"/> using the specified long Option name.
@@ -271,7 +256,7 @@ namespace Fclp
         /// <exception cref="OptionAlreadyExistsException">
         /// A Option with the same <paramref name="longOption"/> name already exists in the <see cref="IFluentCommandLineParser"/>.
         /// </exception>
-        public ICommandLineOptionFluent<T> Setup<T>(string longOption) => SetupInternal<T>(null, longOption);
+        public ICommandLineOptionFluent<T> Setup<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.PublicProperties)] T>(string longOption) => SetupInternal<T>(null, longOption);
 
         /// <summary>
         /// Setup a new command using the specified name.
@@ -357,7 +342,7 @@ namespace Fclp
                     match.Order = matchIndex;
                     match.SetupCommand = option;
                     match.SetupOrder = optionIndex++;
-                    matchedOptions.Add(match);
+                    _ = matchedOptions.Add(match);
 
                     //parsedOptions.Remove(match);//will affect the matchIndex
                 }

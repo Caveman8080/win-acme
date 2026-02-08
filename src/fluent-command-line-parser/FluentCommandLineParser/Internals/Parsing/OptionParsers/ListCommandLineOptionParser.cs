@@ -23,6 +23,7 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Fclp.Internals.Parsing.OptionParsers
@@ -31,7 +32,7 @@ namespace Fclp.Internals.Parsing.OptionParsers
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ListCommandLineOptionParser<T> : ICommandLineOptionParser<List<T>>
+    public class ListCommandLineOptionParser<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T> : ICommandLineOptionParser<List<T>>
     {
         private readonly ICommandLineOptionParserFactory _parserFactory;
 
