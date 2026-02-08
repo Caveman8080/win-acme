@@ -7,9 +7,7 @@ version: 2
 updates:
   # Enable version updates for Git Submodules
   - package-ecosystem: "gitsubmodule"
-    directories:
-      - "src/ACMESharpCore/**"
-      - "src/fluent-command-line-parser/**"
+    directory: "/"
     schedule:
       interval: "monthly"
   # Enable version updates for NuGet
