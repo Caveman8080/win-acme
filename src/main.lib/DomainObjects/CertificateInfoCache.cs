@@ -14,8 +14,12 @@ namespace PKISharp.WACS.DomainObjects
     {
         private readonly ICertificateInfo _inner;
 
-        /// <param name="file"></param>
-        /// <param name="password"></param>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CertificateInfoCache"/> class
+        /// by loading certificate information from the specified cached PFX file.
+        /// </summary>
+        /// <param name="file">The cached certificate file on disk.</param>
+        /// <param name="password">The password used to decrypt the PFX file, or <c>null</c> if none.</param>
         public CertificateInfoCache(FileInfo file, string? password)  
         {
             CacheFile = file;
