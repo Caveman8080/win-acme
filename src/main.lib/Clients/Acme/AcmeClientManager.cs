@@ -430,7 +430,7 @@ namespace PKISharp.WACS.Clients.Acme
                 }
                 catch
                 {
-                    _log.Warning($"Invalid email: {x}");
+                    _log.Warning("Invalid email address provided");
                     return false;
                 }
             }).ToList();
