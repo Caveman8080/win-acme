@@ -21,8 +21,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore src/wascs.sln
+      run: dotnet restore win-acme/src/wascs.sln
     - name: Build
-      run: dotnet build --no-restore src/wacs.sln
+      run: dotnet build --no-restore win-acme/src/wacs.sln
     - name: Test
-      run: dotnet test --no-build --verbosity normal src/wacs.sln
+      run: dotnet test --no-build --verbosity normal win-aceme/src/wacs.sln
