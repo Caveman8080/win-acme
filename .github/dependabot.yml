@@ -5,12 +5,23 @@
 
 version: 2
 updates:
+  # Enable version updates for Git Submodules
+  - package-ecosystem: "gitsubmodule"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    allow:
+      - dependency-name: "src/ACMESharpCore"
+      - dependency-name: "src/fluent-command-line-parser"
+    ignore:
+      - dependency-name: "react-scripts"
+      - dependency-name: "create-react-app/packages/react-scripts"
   # Enable version updates for NuGet
   - package-ecosystem: "nuget"
     directories:
-      - "/src/main"
-      - "/src/main.lib"
-      - "/src/main.test"
-      - "/src/plugin.*"
+      - "src/main/**"
+      - "src/main.lib/**"
+      - "src/main.test/**"
+      - "src/plugin.**/**"
     schedule:
       interval: "monthly"
