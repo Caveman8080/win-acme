@@ -419,10 +419,13 @@ namespace PKISharp.WACS.Clients.IIS
             options = options.WithFlags(CheckFlags(false, existingBinding.Host, options.Flags));
 
             var currentFlags = existingBinding.SSLFlags;
-            if ((currentFlags & ~SSLFlags.SNI) == (options.Flags & ~SSLFlags.SNI) && // Don't care about SNI status
-                ((options.Store == null && existingBinding.CertificateStoreName == null) ||
-                (StructuralComparisons.StructuralEqualityComparer.Equals(existingBinding.CertificateHash, options.Thumbprint) &&
-                string.Equals(existingBinding.CertificateStoreName, options.Store, StringComparison.InvariantCultureIgnoreCase))))
+            var flagsUnchanged = (currentFlags & ~SSLFlags.SNI) == (options.Flags & ~SSLFlags.SNI); // Don't care about SNI status
+            var noCertificateConfigured = options.Store == null && existingBinding.CertificateStoreName == null;
+            var certificateUnchanged =
+                StructuralComparisons.StructuralEqualityComparer.Equals(existingBinding.CertificateHash, options.Thumbprint) &&
+                string.Equals(existingBinding.CertificateStoreName, options.Store, StringComparison.InvariantCultureIgnoreCase);
+
+            if (flagsUnchanged && (noCertificateConfigured || certificateUnchanged))
             {
                 _log.Verbose("No binding update needed");
                 return false;
